@@ -2,18 +2,18 @@
 .header {
     background-color: #23b10d;
     text-align: center;
-    padding: 50px;
+    padding: 30px;
    
   }
 .header h2{ 
     font-family: 'Courier New', Courier, monospace;
-    font-size: large;
+    font-size: 48px;
   }
 .scrape{
     background-color: rgb(rgb(0, 89, 255), green, blue);
     color: white;
     text-align: center;
-    font-size: 12px;
+    font-size: 20px;
     border-radius: 8px;
    
 }
