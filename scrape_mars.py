@@ -3,7 +3,8 @@ import requests
 from splinter import Browser
 from webdriver_manager.chrome import ChromeDriverManager
 import pandas as pd
-import pymongo
+!pip install pymongo
+from flask_pymongo import PyMongo
 from bs4 import BeautifulSoup as bs
 
 
