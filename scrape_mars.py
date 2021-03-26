@@ -4,23 +4,26 @@ import requests
 from splinter import Browser
 from webdriver_manager.chrome import ChromeDriverManager
 import pandas as pd
+import pymongo
+
 
 
 def scrape():
+    
     mars_facts_url = 'https://space-facts.com/mars/'
     response = requests.get(mars_facts_url)
     # Create BeautifulSoup object; parse with 'html.parser'
     soup = bs(response.text, 'html.parser')
     #Scrape the NASA Mars News Site and collect the latest News Title and Paragraph Text. Assign the text to variables that you can reference later.
     mars_news_scraped = soup.find('div', id = 'facts' )
-    headline = mars_news_scraped.find('strong').text
+    headline = {'headline' : mars_news_scraped.find('strong').text}
     mars_list = mars_news_scraped.find_all('li')[0]
-    news_text = mars_list.next_sibling.text
+    news_text = {'headline_text' : mars_list.next_sibling.text}
     #Get Featured Image
     image_html = browser.html
     image_soup = bs(image_html, 'html.parser')
     featured_image = image_soup.find('div', class_ = 'floating_text_area')
-    featured_image_url = 'https://data-class-jpl-space.s3.amazonaws.com/JPL_Space/' + featured_image.a['href']
+    featured_image_url = {'featured_image_url' : 'https://data-class-jpl-space.s3.amazonaws.com/JPL_Space/' + featured_image.a['href']}
     #Get Mars Facts
     mars_data = pd.read_html(mars_facts_url)
     #convert to html table
@@ -32,7 +35,6 @@ def scrape():
     hemispheres_url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
     browser.visit(hemispheres_url)
     hemisphere_image_url = {}
-    hemisphere_image_urls = []
     short_url = 'https://astrogeology.usgs.gov/'
     hemispheres_html = browser.html
     hemispheres_soup = BeautifulSoup(hemispheres_html, 'html.parser')
@@ -46,6 +48,13 @@ def scrape():
         hemisphere_image_url['img_url'] = image_url
         hemisphere_image_urls.append(hemisphere_image_url.copy())
     browser.quit()
+    
+    #Connect to PyMongo/MongoDB to store data
+    conn = "mongodb://localhost:27017"
+    client = pymongo.MongoClient(conn)
+    db = client.mars_db
+    collection = db.mars_data
+    colleciton.insert_one(headline)
 
 
     
