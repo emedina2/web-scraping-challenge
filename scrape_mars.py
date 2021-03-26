@@ -3,7 +3,6 @@ import requests
 from splinter import Browser
 from webdriver_manager.chrome import ChromeDriverManager
 import pandas as pd
-!pip install pymongo
 from flask_pymongo import PyMongo
 from bs4 import BeautifulSoup as bs
 
@@ -58,7 +57,7 @@ def scrape():
     client = pymongo.MongoClient(conn)
     db = client.mars_db
     collection = db.mars_data
-    collection.insert_one(headline)
+    collection.update({},headline, upsert=True)
 
 
     

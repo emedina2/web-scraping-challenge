@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect
 import scrape_mars 
 from bs4 import BeautifulSoup as bs
 import requests
