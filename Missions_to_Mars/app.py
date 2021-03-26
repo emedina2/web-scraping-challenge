@@ -13,7 +13,7 @@ mongo = PyMongo(app, uri="mongodb://localhost:27017/mars_db")
 @app.route("/")
 def home():
     test_data = mongo.db.collection.find_one()
-    return render_template("index.html", test = test_data)
+    return render_template('index.html', test = test_data)
 
 @app.route("/scrape")
 def scrape():

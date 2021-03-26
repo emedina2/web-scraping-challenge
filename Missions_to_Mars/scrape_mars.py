@@ -24,6 +24,8 @@ def scrape():
     executable_path = {'executable_path': ChromeDriverManager().install()}
     browser = Browser('chrome', **executable_path, headless=False)
     #Get Featured Image
+    image_url = 'https://data-class-jpl-space.s3.amazonaws.com/JPL_Space/index.html'
+    browser.visit(image_url)
     image_html = browser.html
     image_soup = bs(image_html, 'html.parser')
     featured_image = image_soup.find('div', class_ = 'floating_text_area')
@@ -54,7 +56,7 @@ def scrape():
     
     #Connect to PyMongo/MongoDB to store data
     conn = "mongodb://localhost:27017"
-    client = pymongo.MongoClient(conn)
+    client = PyMongo.MongoClient(conn)
     db = client.mars_db
     collection = db.mars_data
     collection.update({},headline, upsert=True)
