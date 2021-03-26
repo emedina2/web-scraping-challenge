@@ -1,0 +1,40 @@
+
+.header {
+    background-color: #23b10d;
+    text-align: center;
+    padding: 50px;
+   
+  }
+  .header h2{ 
+    font-family: 'Courier New', Courier, monospace;
+    font-size: large;
+
+  }
+
+.column.main {
+    float: left;
+    width: 60%;
+    background-color: rgb(8, 127, 156);
+  }
+.column.main h1{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+
+}
+.column.table {
+    width: 40%;
+    background-color: blue;
+  }
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  .footer {
+    background-color: #a52424;
+    text-align: center;
+    padding: 10px;
+  }
