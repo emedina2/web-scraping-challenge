@@ -5,6 +5,7 @@ from splinter import Browser
 from webdriver_manager.chrome import ChromeDriverManager
 import pandas as pd
 
+
 def scrape():
     mars_facts_url = 'https://space-facts.com/mars/'
     response = requests.get(mars_facts_url)
@@ -44,6 +45,7 @@ def scrape():
         hemisphere_image_url['title'] =  image_title
         hemisphere_image_url['img_url'] = image_url
         hemisphere_image_urls.append(hemisphere_image_url.copy())
+    browser.quit()
 
 
-app = Flask(__name__)
+    
