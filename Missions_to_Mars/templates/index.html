@@ -21,21 +21,21 @@
     <main>
         <div class="row">
             <div class="column latest">
-                <h1>Latest News</h1>
-                <p> news info here</p>
+                <h1>{{test.headline}}</h1>
+                <p> {{test.headline_text}}</p>
             </div>
         </div>
         <div class="row">
             <div class="column main">
                 <h1> Featured Mars Image</h1>
-                <img src='https://astropedia.astrogeology.usgs.gov/download/Mars/Viking/cerberus_enhanced.tif' ,
+                <img src={{test.img_url}} ,
                     alt="Mars Featured Image">
 
             </div>
 
             <div class="column table">
-                <p> testing this </p>
-                <div>{{test.headline}}</div>
+               
+                <div>{{scrape.mars_data_table}}</div>
             </div>
         </div>
         </div>

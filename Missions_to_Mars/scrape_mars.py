@@ -17,9 +17,9 @@ def scrape():
     soup = bs(response.text, 'html.parser')
     #Scrape the NASA Mars News Site and collect the latest News Title and Paragraph Text. Assign the text to variables that you can reference later.
     mars_news_scraped = soup.find('div', id = 'facts' )
-    headline = {'headline' : mars_news_scraped.find('strong').text}
+    headline = mars_news_scraped.find('strong').text
     mars_list = mars_news_scraped.find_all('li')[0]
-    news_text = {'headline_text' : mars_list.next_sibling.text}
+    news_text =  mars_list.next_sibling.text
     
      #open browser
     executable_path = {'executable_path': ChromeDriverManager().install()}
@@ -30,18 +30,30 @@ def scrape():
     image_html = browser.html
     image_soup = bs(image_html, 'html.parser')
     featured_image = image_soup.find('div', class_ = 'floating_text_area')
-    featured_image_url = {'featured_image_url' : 'https://data-class-jpl-space.s3.amazonaws.com/JPL_Space/' + featured_image.a['href']}
+    featured_image_url = 'https://data-class-jpl-space.s3.amazonaws.com/JPL_Space/' + featured_image.a['href']
     #Get Mars Facts
     mars_data = pd.read_html(mars_facts_url)
     #convert to html table
     mars_data_table = mars_data[0].to_html()
+
+    mars_db_data = {
+        'headline' : headline,
+        'headline_text':news_text,
+        'featured_image_url' : featured_image_url
+    }
+    #Connect to PyMongo/MongoDB to store data
+    conn = "mongodb://localhost:27017"
+    client = MongoClient(conn)
+    db = client.mars_db
+    collection = db.mars_data
+    collection.update({},mars_db_data, upsert=True)
     
     #Grab Hemisphere links
     hemispheres_url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
     browser.visit(hemispheres_url)
     hemisphere_image_url = {}
-    hemisphere_image_urls = []
     short_url = 'https://astrogeology.usgs.gov/'
+    short_img_url = 'https://astrogeology.usgs.gov'
     hemispheres_html = browser.html
     hemispheres_soup = bs(hemispheres_html, 'html.parser')
     hemisphere_items = hemispheres_soup.find('div', class_='collapsible results').find_all('div', class_='item')
@@ -49,18 +61,12 @@ def scrape():
         browser.visit(short_url + hem_url.a['href'])
         hemisphere_body = bs(browser.html, 'html.parser').find('body')
         image_title = hemisphere_body.find('div', class_='content').find('h2', class_='title').text
-        image_url = hemisphere_body.find('div', class_='downloads').find_all('li')[1].a['href']
+        image_url = hemisphere_body.find('img', class_='wide-image')['src']
         hemisphere_image_url['title'] =  image_title
-        hemisphere_image_url['img_url'] = image_url
-        hemisphere_image_urls.append(hemisphere_image_url.copy())
+        hemisphere_image_url['img_url'] = short_img_url + image_url
+        collection.insert_one(hemisphere_image_url.copy())
     browser.quit()
+  
     
-    #Connect to PyMongo/MongoDB to store data
-    conn = "mongodb://localhost:27017"
-    client = MongoClient(conn)
-    db = client.mars_db
-    collection = db.mars_data
-    collection.update({},headline, upsert=True)
-
 
     
