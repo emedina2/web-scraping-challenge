@@ -1,6 +1,6 @@
 
 .header {
-    background-color: #23b10d;
+    background-color: grey;
     text-align: center;
     padding: 30px;
    
@@ -15,7 +15,6 @@
     text-align: center;
     font-size: 20px;
     border-radius: 8px;
-   
 }
 
 .column.latest{
@@ -25,7 +24,6 @@
     float: left;
     width: 60%;
     padding: 20px;
-    background-color: rgb(8, 127, 156);
   }
 .column.main h1{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -33,24 +31,21 @@
 .column.table{
     width: 40%;
     padding: 20px;
-    background-color: blue;
-  }
   
-  /* Clear floats after the columns */
-
-  .row.images{
-    padding: 30px;
-    float: none;
-    text-align: center;
   }
-
-  .row.images h1{
-    text-align: center;
-
-  }
-
-  .footer {
-    background-color: #a52424;
-    text-align: center;
-    padding: 10px;
-  }
+.col-md-6{
+  padding: 20px;
+  align-items: center;
+  background-color: darkgoldenrod;
+  column-gap: 10px;
+}
+.col-md-12 h1{
+  text-align: center;
+  
+}
+  
+  .images{
+   padding: 50px;
+   column-count: 2;
+   text-align: center;
+    }
