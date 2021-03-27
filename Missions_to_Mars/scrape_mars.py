@@ -4,6 +4,7 @@ from splinter import Browser
 from webdriver_manager.chrome import ChromeDriverManager
 import pandas as pd
 from flask_pymongo import PyMongo
+from pymongo import MongoClient
 from bs4 import BeautifulSoup as bs
 
 
@@ -56,7 +57,7 @@ def scrape():
     
     #Connect to PyMongo/MongoDB to store data
     conn = "mongodb://localhost:27017"
-    client = PyMongo.MongoClient(conn)
+    client = MongoClient(conn)
     db = client.mars_db
     collection = db.mars_data
     collection.update({},headline, upsert=True)
