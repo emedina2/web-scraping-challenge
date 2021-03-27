@@ -27,29 +27,30 @@
             </div>
         </div>
         <div class="row">
-            <div class="column main">
+            <div class="col-md-8">
 
                 <h1> Featured Mars Image</h1>
                 <img src={{mars_data[0].featured_image_url}} , alt="Mars Featured Image">
 
             </div>
 
-            <div class="column table">
-
+            <div class="col-md-4">
+                <h1> Mars Facts</h1>
                 {{table_data |safe}}
             </div>
         </div>
     </main>
     <div class="row images">
-        <div class = "col-md-12">
+        <div class="col-md-12">
         <h1>Mars Hemispheres</h1>
     </div>
-    </div>
+</div>
+
     
     <div class="row images">
         <div class="col-md-6">
             <div class="card">
-                <img src={{mars_data[1].img_url}} ,alt={{mars_data[1].title}} style="width:30%, height:30%">
+                <img src={{mars_data[1].img_url}} ,alt={{mars_data[1].title}} style="width:70%">
                 <div class="container">
                     <h4><b>{{mars_data[1].title}}</b></h4>
                 </div>
@@ -57,7 +58,7 @@
         </div>
         <div class="col-md-6">
             <div class="card">
-                <img src={{mars_data[2].img_url}} ,alt={{mars_data[2].title}} style="width:30%, height:30%">
+                <img src={{mars_data[2].img_url}} ,alt={{mars_data[2].title}} style="width:70%">
                 <div class="container">
                     <h4><b>{{mars_data[2].title}}</b></h4>
                 </div>
@@ -65,7 +66,7 @@
         </div>
         <div class="col-md-6">
             <div class="card">
-                <img src={{mars_data[3].img_url}} ,alt={{mars_data[3].title}} style="width:30%, height:30%">
+                <img src={{mars_data[3].img_url}} ,alt={{mars_data[3].title}} style="width:70%">
                 <div class="container">
                     <h4><b>{{mars_data[3].title}}</b></h4>
                 </div>
@@ -73,7 +74,7 @@
         </div>
         <div class="col-md-6">
             <div class="card">
-                <img src={{mars_data[4].img_url}} alt={{mars_data[4].title}} style="width:30%, height:30%">
+                <img src={{mars_data[4].img_url}} alt={{mars_data[4].title}} style="width:70%">
                 <div class="container">
                     <h4><b>{{mars_data[4].title}}</b></h4>
                 </div>

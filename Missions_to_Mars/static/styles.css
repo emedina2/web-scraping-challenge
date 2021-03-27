@@ -1,51 +1,64 @@
 
 .header {
-    background-color: grey;
-    text-align: center;
-    padding: 30px;
-   
-  }
-.header h2{ 
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 48px;
-  }
-.scrape{
-    background-color: rgb(rgb(0, 89, 255), green, blue);
-    color: white;
-    text-align: center;
-    font-size: 20px;
-    border-radius: 8px;
-}
+background-color: lightgrey;
+text-align: center;
+padding: 30px;
 
+}
+.header h2{ 
+font-family: 'Courier New', Courier, monospace;
+font-size: 48px;
+}
+.scrape{
+background-color: rgb(rgb(0, 89, 255), green, blue);
+color: rgb(red, green, rgb(36, 125, 203));
+text-align: center;
+font-size: 20px;
+border-radius: 8px;
+}
 .column.latest{
-    padding: 20px;
+padding: 20px;
+}
+.column.latest h1{
+  font-size: 36px;
+}
+.column.latest h2{
+  font-size: 24px;
 }
 .column.main {
-    float: left;
-    width: 60%;
-    padding: 20px;
-  }
+float: left;
+width: 60%;
+padding: 20px;
+}
 .column.main h1{
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .column.table{
-    width: 40%;
-    padding: 20px;
-  
-  }
+width: 40%;
+padding: 20px;
+}
+.col-md-8 h1{
+  font-size: 24px;
+}
+.col-md-4 h1{
+  font-size: 24px;
+}
 .col-md-6{
-  padding: 20px;
-  align-items: center;
-  background-color: darkgoldenrod;
-  column-gap: 10px;
+padding: 20px;
+align-items: center;
+column-gap: 10px;
 }
 .col-md-12 h1{
-  text-align: center;
-  
+text-align: center;
+padding: 1px;
 }
-  
-  .images{
-   padding: 50px;
-   column-count: 2;
-   text-align: center;
-    }
+
+.images{
+padding: 10px;
+column-count: 2;
+text-align: center;
+}
+
+.card{
+align-items: center;
+}
