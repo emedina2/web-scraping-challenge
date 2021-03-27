@@ -12,7 +12,12 @@ def get_mars_table():
     mars_facts_url = 'https://space-facts.com/mars/'
     mars_data = pd.read_html(mars_facts_url)
     #convert to html table
-    mars_data_table = mars_data[0].to_html()
+    clean_table = mars_data[0].set_index([0])
+    clean_table.index.name="Description"
+    clean_table = clean_table.rename(columns={1: ""})
+    mars_data_table =clean_table.to_html()
+    mars_data_table
+    clean_table
     return mars_data_table
 
 def scrape():
