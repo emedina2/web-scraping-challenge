@@ -37,10 +37,16 @@
   }
   
   /* Clear floats after the columns */
-  .row:after {
-    content: "";
-    display: table;
-    clear: both;
+
+  .row.images{
+    padding: 30px;
+    float: none;
+    text-align: center;
+  }
+
+  .row.images h1{
+    text-align: center;
+
   }
 
   .footer {

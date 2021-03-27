@@ -6,17 +6,22 @@ from splinter import Browser
 from webdriver_manager.chrome import ChromeDriverManager
 import pandas as pd
 from flask_pymongo import PyMongo
+from pymongo import MongoClient
+
 
 app = Flask(__name__)
-mongo = PyMongo(app, uri="mongodb://localhost:27017/mars_db")
-
+app.config["MONGO_URI"] = "mongodb://localhost:27017/mars_db"
+mongo = PyMongo(app)
+collection = mongo.db.mars_data
 
 
 @app.route("/")
 def home():
-    test_data = mongo.db.mars_data.find_one()
-    mars_table = scrape_mars.mars_data_table
-    return render_template('index.html', test = test_data, table_data = mars_table)
+    mars_data = collection.find()
+    mars_table = scrape_mars.get_mars_table()
+    return render_template('index.html', mars_data = mars_data, table_data = mars_table)
+
+
 
 @app.route("/scrape")
 def scrape():

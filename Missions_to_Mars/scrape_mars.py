@@ -7,10 +7,16 @@ from flask_pymongo import PyMongo
 from pymongo import MongoClient
 from bs4 import BeautifulSoup as bs
 
+def get_mars_table():
+    #Get Mars Facts
+    mars_facts_url = 'https://space-facts.com/mars/'
+    mars_data = pd.read_html(mars_facts_url)
+    #convert to html table
+    mars_data_table = mars_data[0].to_html()
+    return mars_data_table
 
 def scrape():
    
-
     mars_facts_url = 'https://space-facts.com/mars/'
     response = requests.get(mars_facts_url)
     # Create BeautifulSoup object; parse with 'html.parser'
@@ -46,6 +52,7 @@ def scrape():
     client = MongoClient(conn)
     db = client.mars_db
     collection = db.mars_data
+    collection.delete_many({})
     collection.update({},mars_db_data, upsert=True)
     
     #Grab Hemisphere links
@@ -66,6 +73,7 @@ def scrape():
         hemisphere_image_url['img_url'] = short_img_url + image_url
         collection.insert_one(hemisphere_image_url.copy())
     browser.quit()
+    
   
     
 

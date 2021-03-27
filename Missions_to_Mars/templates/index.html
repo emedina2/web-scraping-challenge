@@ -13,7 +13,7 @@
 <body>
     <header class="header">
         <h2> Mission to Mars</h2>
-        <button class = "scrape">
+        <button class="scrape">
             <a href="/scrape" role="button">Scrape now!</a>
         </button>
     </header>
@@ -21,26 +21,45 @@
     <main>
         <div class="row">
             <div class="column latest">
-                <h1>{{test.headline}}</h1>
-                <p> {{test.headline_text}}</p>
+                <h1>Latest Mars News</h1>
+                <h2>{{mars_data[0].headline}}</h2>
+                <p> {{mars_data[0].headline_text}}</p>
             </div>
         </div>
         <div class="row">
             <div class="column main">
+
                 <h1> Featured Mars Image</h1>
-                <img src={{test.img_url}} ,
-                    alt="Mars Featured Image">
+                <img src={{mars_data[0].featured_image_url}} , alt="Mars Featured Image">
 
             </div>
 
             <div class="column table">
-               
-                <div>{{table_data}}</div>
+
+                {{table_data |safe}}
             </div>
         </div>
-        </div>
-
     </main>
+    <div class="row images">
+        <h1>Mars Hemispheres</h1>
+    </div>
+    <div class="row images">
+        <div class="card">
+            <img src={{mars_data[1].img_url}} ,alt={{mars_data[1].title}} style="width:40%">
+            <div class="container">
+                <h4><b>{{mars_data[1].title}}</b></h4>
+
+            </div>
+            <div class="card">
+                <img src={{mars_data[2].img_url}} ,alt={{mars_data[2].title}} style="width:40%">
+                <div class="container">
+                    <h4><b>{{mars_data[2].title}}</b></h4>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
 
 
 
