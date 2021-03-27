@@ -46,19 +46,28 @@ padding: 20px;
 .col-md-6{
 padding: 20px;
 align-items: center;
-column-gap: 10px;
+justify-content: center;
+
 }
 .col-md-12 h1{
 text-align: center;
 padding: 1px;
+font-size: 24px;
 }
 
 .images{
 padding: 10px;
 column-count: 2;
 text-align: center;
+justify-content: center;
 }
 
 .card{
 align-items: center;
+object-fit:contain;
+width: 70%;
+}
+
+.card h4{
+  font-size: 16px;
 }
